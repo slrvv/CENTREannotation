@@ -1,0 +1,3 @@
+"Title","Description","BiocVersion","Genome","SourceType","SourceUrl","SourceVersion","Species","TaxonomyId","Coordinate_1_based","DataProvider","Maintainer","RDataClass","DispatchClass","RDataPath","Tags","Notes"
+"GENCODE comprehensive gene annotation v40","GENCODE comprehensive gene annotation v40 on reference chromosomes only","","GRCh38","gtf","https://www.gencodegenes.org/human/release_40.html","V40","Homo Sapiens",9606,TRUE,"GENCODE","Sara Lopez <lopez_s@molgen.mpg.de>","","Rda","","",""
+"ENCODE Registry of cCREs V3","ENCODE cCREs V3 all human cCREs","","GRCh38","bed","https://screen.encodeproject.org","V3","Homo Sapiens",9606,TRUE,"ENCODE cCREs","Sara Lopez <lopez_s@molgen.mpg.de>","","Rda","","",""
