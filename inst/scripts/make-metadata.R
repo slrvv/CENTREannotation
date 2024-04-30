@@ -23,9 +23,9 @@ meta <- data.frame(
 	Maintainer = "Sara Lopez <lopez_s@molgen.mpg.de>",
 	RDataClass = c("data.frame","data.frame"),
 	DispatchClass = c(rep("Rda", 2)),
-	RDataPath = c("", ""),
-	Tags = c(rep("AnnotationHub:AnnotationData:Organism", 2)),
-	Notes = c("", "")
+	Location_Prefix = c(rep("http://owww.molgen.mpg.de/~CENTRE_data/", 2)),
+	RDataPath = c("gencode_v38.one.transcript2.rda", "ENCODEAnnotation-GRCh38-cCREsV3_all500.rda"),
+	Tags = c(rep("AnnotationHub:AnnotationData:Organism", 2))
 )
 
 write.csv(meta, file= system.file("extdata",
