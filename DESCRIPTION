@@ -1,12 +1,17 @@
 Package: CENTREannotation
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: This is a Hub package for the annotation data of CENTRE
+Version: 0.99.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Sara", "Lopez Ruiz de Vargas","lopez_s@molgen.mpg.de",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-1290-4774"))
+Description: This is an AnnotationHub package for the CENTRE Bioconductor 
+    software package. It contains the GENCODE version 40 annotation and ENCODE 
+    Registry of candidate cis-regulatory elements (cCREs) version 3. All 
+    for Human hg38 genome.
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+biocViews: AnnotationData, AnnotationHub, Organism
+Depends: AnnotationHub, utils, knitr, rmarkdown

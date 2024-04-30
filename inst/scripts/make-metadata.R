@@ -5,27 +5,30 @@
 ##########################################################################
 
 meta <- data.frame(
-	Title = c("GENCODE comprehensive gene annotation v40",
+	Title = c("GENCODE basic gene annotation v40",
 	"ENCODE Registry of cCREs V3"),
-	Description = c(paste0("GENCODE comprehensive gene annotation v40"
+	Description = c(paste0("GENCODE comprehensive basic gene annotation v40"
 	," on reference chromosomes only"),
 	"ENCODE cCREs V3 all human cCREs"),
-	BiocVersion = c("",""),
+	BiocVersion = c(rep("3.18", 2)),
 	Genome = rep("GRCh38", 2), 
-	SourceType = c("gtf", "bed"),
+	SourceType = c("GTF", "BED"),
 	SourceUrl = c("https://www.gencodegenes.org/human/release_40.html",
 	"https://screen.encodeproject.org"),
 	SourceVersion = c("V40", "V3"),
-	Species = rep("Homo Sapiens", 2),
+	Species = rep("Homo sapiens", 2),
 	TaxonomyId = rep(9606, 2),
 	Coordinate_1_based = TRUE, 
 	DataProvider = c("GENCODE", "ENCODE cCREs"),
 	Maintainer = "Sara Lopez <lopez_s@molgen.mpg.de>",
-	RDataClass = c("",""),
+	RDataClass = c("data.frame","data.frame"),
 	DispatchClass = c(rep("Rda", 2)),
 	RDataPath = c("", ""),
-	Tags = c("", ""),
+	Tags = c(rep("AnnotationHub:AnnotationData:Organism", 2)),
 	Notes = c("", "")
 )
 
-write.csv(meta, file="/inst/extdata/metadata.csv", row.names=FALSE)
+write.csv(meta, file= system.file("extdata",
+                                  "metadata.csv",
+                                  package = "CENTREannotation"),
+          row.names=FALSE)
