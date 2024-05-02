@@ -1,9 +1,10 @@
 \name{gencode40.HSapiens.hg38}
 \alias{gencode40.HSapiens.hg38}
 \docType{data}
-\title{GENCODE basic gene annotation hg38 version 40}
+\title{Genome wide GENCODE basic gene annotation hg38 version 40}
 \description{
-GENCODE comprehensive basic gene annotation v40 on reference chromosomes only
+Genome wide GENCODE comprehensive basic gene annotation v40 on 
+reference chromosomes only
 }
 
 \format{
@@ -42,7 +43,10 @@ https://www.gencodegenes.org/human/release_40.html
 library(AnnotationHub)
 hub <- AnnotationHub()
 gencodeAnnot <- query(hub, c("CENTREannotation", "gencode.40.HSapiens.hg38"))
-
+\dontrun{
+## download resource
+gencode = gencodeAnnot[[1]]
+}}
 }
 
-\keyword{datasets}
+\keyword{AnnotationHub}

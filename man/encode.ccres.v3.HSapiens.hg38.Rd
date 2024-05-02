@@ -34,7 +34,12 @@ new reg element range was computed.
 https://screen.encodeproject.org
 }
 \examples{
-data(encodeccres)
-## maybe str(encodeccres) ; plot(encodeccres) ...
-}
-\keyword{datasets}
+library(AnnotationHub)
+hub <- AnnotationHub()
+ccresAnnot <- query(hub, c("CENTREannotation", "encode.ccres.v3.HSapiens.hg38"))
+\dontrun{
+## download resource
+ccres = ccres[[1]]
+}}
+\keyword{AnnotationHub}
+
