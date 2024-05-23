@@ -12,7 +12,7 @@ meta <- data.frame(
 	," on reference chromosomes only"),
 	"ENCODE cCREs V3 all human cCREs"
 	),
-	BiocVersion = c(rep("3.18", 2)),
+	BiocVersion = c(rep("3.19", 2)),
 	Genome = rep("GRCh38", 2), 
 	SourceType = c("GTF", "BED"),
 	SourceUrl = c("https://www.gencodegenes.org/human/release_40.html",
