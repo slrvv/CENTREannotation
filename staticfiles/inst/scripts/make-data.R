@@ -20,5 +20,3 @@
 # element region was extended to a have a size of 500 and the middle point in the
 # new reg element range was computed.
 # The data was transformed into an SQLite database using RSQLite
-
-

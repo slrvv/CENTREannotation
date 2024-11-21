@@ -4,3 +4,8 @@
 .httr-oauth
 .DS_Store
 inst/scripts/.RData
+CENTREannotation.Rcheck/
+CENTREannotation_0.99.0.tar.gz
+staticfiles.Rcheck/
+staticfiles/inst/extdata/ENCODEAnnotation-GRCh38-cCREsV3.db
+staticfiles/inst/extdata/gencode_hg38_v40.db

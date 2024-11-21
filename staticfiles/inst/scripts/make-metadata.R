@@ -31,8 +31,5 @@ meta <- data.frame(
 	Tags = c(rep("AnnotationHub:AnnotationData:Organism", 2))
 )
 
-write.csv(meta, file= system.file("extdata",
-                                  "metadata.csv",
-                                  package = "CENTREannotation"),
-          row.names=FALSE)
+write.csv(meta, "inst/extdata/metadata.csv", row.names=FALSE)
  	

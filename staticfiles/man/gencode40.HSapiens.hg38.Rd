@@ -47,6 +47,5 @@ gencodeAnnot <- query(hub, c("CENTREannotation", "gencode.40.HSapiens.hg38"))
 ## download resource
 gencode = gencodeAnnot[[1]]
 }}
-}
 
 \keyword{AnnotationHub}
