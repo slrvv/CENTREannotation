@@ -1,3 +1,6 @@
+##The set up of the class and properties is based on the CompDb class and 
+##package
+
 #' @name CENTREannotDb
 #'
 #' @import BiocGenerics
@@ -52,13 +55,13 @@ setValidity("CENTREannotDb", function(object) {
 #'
 #' @rdname CENTREannotDb
 CENTREannotationDb <- function(x) {
-  return(.initialize_compdb(.CENTREannotDb(dbname = x,
+  return(.initialize_centredb(.CENTREannotDb(dbname = x,
                                              dbflags = SQLITE_RO,
                                              packageName = "CENTREannotation")))
 }
 
 #' @importFrom DBI dbDriver dbGetQuery dbConnect dbListTables
-.initialize_compdb <- function(x) {
+.initialize_centredb <- function(x) {
   con <- .dbconn(x)
   x@conn <- con
   if (length(.dbname(x)) && !is.null(con))
