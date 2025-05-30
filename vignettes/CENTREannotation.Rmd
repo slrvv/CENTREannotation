@@ -1,0 +1,80 @@
+---
+title: "CENTREannotation"
+author: "Sara Lopez Ruiz de Vargas"
+date: "`r doc_date()`"
+vignette: >
+  %\VignetteIndexEntry{CENTRE AnnotationHub datasets}
+  %\VignetteEngine{knitr::rmarkdown}
+output: 
+  BiocStyle::html_document
+---
+
+# CENTREannotation: An AnnotationHub package with the ENCODE cCREs V3 and 
+GENCODE basic gene annotation v40 for the CENTRE package
+
+**CENTRE** is a package for Cell-type specific ENhancer Target pREdiction, that 
+follows this workflow: 
+
+`createPairs()` -> `computeGenericFeatures()` -> `computeCellTypeFeatures()` 
+-> `centreClassification()`
+
+The step `CENTRE::createPairs()` creates all possible enhancer-gene pairs at 
+500kb of the input genes or enhancers. For this step CENTRE uses the 
+[ENCODE SCREEN v3 enhancer annotation](https://screen.encodeproject.org) and the
+[GENCODE v40 gene annotation](https://www.gencodegenes.org/human/release_40.html)
+
+
+All of the data in the CENTREannotation package can be accessed through 
+AnnotationHub:
+
+```{r load AnnotationHub, results='hide'}
+library(AnnotationHub, quietly = TRUE)
+```
+
+```{r setup}
+hub <- AnnotationHub()
+ah <- query(hub, "CENTREannotation")
+ah
+```
+
+The GENCODE database can be accessed using `ah[["AH116730"]]` and returns a 
+CENTREannotgenedb object. It can also be accessed using 
+`CENTREannotgeneDb`
+
+## The CENTREannotationgeneDb and CENTREannotationenhDb object
+
+The objects  CENTREannotgeneDb and CENTREannotenhDb  represent the GENCODE
+and ENCODE databases respectively
+```{r CENTREannotDb}
+library(CENTREannotation)
+CENTREannotgeneDb
+CENTREannotenhDb
+```
+
+CENTREannotgeneDb contains:
+
+- `gencode`: GENCODE v40 gene annotation table
+- `metadata`: metadata for the AnnotationHub
+
+CENTREannotenhDb contains:
+
+- `ccres`: ENCODE SCREEN v3 candidate cis regulatory elements
+- `metadata`: metadata for the AnnotationHub
+
+The database can be used as follows:
+
+- `tables()`: shows all the tables and columns in the database
+- `fetch_data()`: interface to select data from the database (see man pages) 
+
+```{r use CENTREannotDb}
+tables(CENTREannotenhDb)
+res <- fetch_data(CENTREannotenhDb,
+    columns = c("enhancer_id", "start"),
+    entries = c("EH38E1519134", "EH38E1519132"),
+    column_filter = "enhancer_id"
+)
+```
+
+```{r sessionInfo}
+sessionInfo()
+```
