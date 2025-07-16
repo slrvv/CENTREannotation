@@ -7,8 +7,7 @@
 fetch_data(x, columns, entries, column_filter)
 }
 \arguments{
-\item{x}{A \code{CENTREannotDb} object, either \code{CENTREannotgeneDb} or
-\code{CENTREannotenhDb}}
+\item{x}{A \code{CENTREannotDb} object.}
 
 \item{columns}{Columns to select (vector or string). Equivalent to X in
 SELECT X.}
@@ -29,10 +28,13 @@ Main interface to fetch data from the CENTREannotation package databases
 through the \code{CENTREannotDb} objects.
 }
 \examples{
- res <- fetch_data(CENTREannotenhDb, 
-                  columns=c("enhancer_id", "start"), 
-                   entries=c("EH38E1519134","EH38E1519132") , 
-                   column_filter="enhancer_id")
+ah <- AnnotationHub::AnnotationHub()
+CENTREannotenhDb <- ah[["AH116731"]]
+res <- fetch_data(CENTREannotenhDb,
+    columns = c("enhancer_id", "start"),
+    entries = c("EH38E1519134", "EH38E1519132"),
+    column_filter = "enhancer_id"
+)
 }
 \references{
 Based on the internal query engine of \code{CompoundDb}

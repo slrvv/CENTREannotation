@@ -12,11 +12,11 @@ Description: This is an AnnotationHub package for the CENTRE Bioconductor
 License: Artistic-2.0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 biocViews: AnnotationData, AnnotationHub
-Depends: R (>= 4.4.0)
+Depends: R (>= 4.5.0)
 Imports: AnnotationHub, RSQLite, DBI, BiocGenerics, methods
 VignetteBuilder: knitr
-Suggests:  knitr, rmarkdown, testthat, BiocStyle 
+Suggests: knitr, rmarkdown, testthat, BiocStyle 
 URL: https://github.com/slrvv/CENTREannotation
 BugReports: https://github.com/slrvv/CENTREannotation/issues

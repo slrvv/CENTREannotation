@@ -216,11 +216,7 @@ jobs:
           pkgs <- installed.packages()[, "Package"]
           sessioninfo::session_info(pkgs, include_base = TRUE)
         shell: Rscript {0}
-      
-      - name: Download required file
-        run: |
-          curl -L "http://owww.molgen.mpg.de/~CENTRE_data/CENTREannotationData/ENCODEAnnotation-GRCh38-cCREsV3.db" -o inst/extdata/ENCODEAnnotation-GRCh38-cCREsV3.db
-          curl -L  "http://owww.molgen.mpg.de/~CENTRE_data/CENTREannotationData/gencode_hg38_v40.db" -o inst/extdata/gencode_hg38_v40.db
+        
       - name: Run CMD check
         env:
           _R_CHECK_CRAN_INCOMING_: false

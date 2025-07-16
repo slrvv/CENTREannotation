@@ -3,18 +3,17 @@
 
 #' @name CENTREannotDb
 #'
-#' @import BiocGenerics
+#' @import BiocGenerics AnnotationHub
 #' @title Class object for the CENTRE annotation data
 #'
-#' @aliases CENTREannotDb-class CENTREannotgeneDb-object CENTREannotenhDb-object
-#'
+#' @aliases CENTREannotDb-class 
 #' @return class CENTREannotDb
 #'
 #' @description
 #'
 #' The CENTRE annotation data is accessed through objects of `CENTREannotDb` class.
-#' `CENTREannotenhDb` provides access to the ENCODE screen V3 annotation
-#' for Human https://screen.encodeproject.org and `CENTREannotenhDb` gives access to
+#' That either provides access to the ENCODE screen V3 annotation
+#' for Human https://screen.encodeproject.org or gives access to
 #' GENCODE basic gene annotation version 40.
 #'
 #' @details
@@ -23,9 +22,11 @@
 #' for each table in the database.
 #'
 #' @examples
-#' tables(CENTREannotgeneDb)
-#'
-#' @references Based on [CompoundDb::CompDb].
+#' ##load the screen V3 annotation
+#' ah <- AnnotationHub::AnnotationHub()
+#' screen <- ah[["AH116731"]]
+#' tables(screen) #get all tables and columns in the data base
+#' @references Based on CompoundDb::CompDb.
 
 #' @importClassesFrom DBI DBIConnection
 setClassUnion("DBIConnectionOrNULL", c("DBIConnection", "NULL"))
@@ -56,18 +57,19 @@ setClassUnion("DBIConnectionOrNULL", c("DBIConnection", "NULL"))
 #' @importFrom RSQLite SQLITE_RO
 #'
 #' @rdname CENTREannotDb
-CENTREannotationDb <- function(x) {
+CENTREannotDb <- function(x) {
     return(.initialize_centredb(.CENTREannotDb(
-        dbname = x,
+        conn = x,
         dbflags = SQLITE_RO,
         packageName = "CENTREannotation"
     )))
 }
 
-#' @importFrom DBI dbDriver dbGetQuery dbConnect dbListTables dbDisconnect
+#' @importFrom DBI dbDriver dbGetQuery dbConnect dbListTables dbDisconnect dbIsValid
+#' 
 .initialize_centredb <- function(x) {
     con <- .dbconn(x)
-    x@conn <- con
+    x@dbname <- dbfile(con)
     if (length(.dbname(x)) && !is.null(con)) {
         on.exit(dbDisconnect(con))
     }
@@ -80,7 +82,6 @@ CENTREannotationDb <- function(x) {
     x@.properties$tables <- tbls
     x
 }
-
 .metadata <- function(x) {
     if (!is(x, "DBIConnection")) {
         n <- .dbname(x)
@@ -106,9 +107,10 @@ CENTREannotationDb <- function(x) {
     }
 }
 
+#' @importFrom DBI dbIsValid
 .dbconn <- function(x) {
-    if (length(.dbname(x))) {
-        dbConnect(dbDriver("SQLite"), dbname = x@dbname, flags = .dbflags(x))
+    if (!dbIsValid(x@conn)) {
+        dbConnect(dbDriver("SQLite"), dbname = dbfile(x@conn), flags = .dbflags(x))
     } else {
         x@conn
     }
@@ -148,9 +150,10 @@ CENTREannotationDb <- function(x) {
 #'
 #' @rdname CENTREannotDb
 tables <- function(x) {
+    con <- .dbconn(x)
+    x <- CENTREannotDb(con)
     .tables(x)
 }
-
 .get_property <- function(x, name) {
     x@.properties[[name]]
 }

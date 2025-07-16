@@ -4,13 +4,10 @@
 \name{CENTREannotDb}
 \alias{CENTREannotDb}
 \alias{CENTREannotDb-class}
-\alias{CENTREannotgeneDb-object}
-\alias{CENTREannotenhDb-object}
-\alias{CENTREannotationDb}
 \alias{tables}
 \title{Class object for the CENTRE annotation data}
 \usage{
-CENTREannotationDb(x)
+CENTREannotDb(x)
 
 tables(x)
 }
@@ -22,8 +19,8 @@ class CENTREannotDb
 }
 \description{
 The CENTRE annotation data is accessed through objects of \code{CENTREannotDb} class.
-\code{CENTREannotenhDb} provides access to the ENCODE screen V3 annotation
-for Human https://screen.encodeproject.org and \code{CENTREannotenhDb} gives access to
+That either provides access to the ENCODE screen V3 annotation
+for Human https://screen.encodeproject.org or gives access to
 GENCODE basic gene annotation version 40.
 }
 \details{
@@ -31,11 +28,11 @@ Using \code{tables(x)} on a \code{CENTREannotDb} object returns the tables and c
 for each table in the database.
 }
 \examples{
-tables(CENTREannotgeneDb)
-
-
-
+##load the screen V3 annotation
+ah <- AnnotationHub::AnnotationHub()
+screen <- ah[["AH116731"]]
+tables(screen) #get all tables and columns in the data base
 }
 \references{
-Based on \link[CompoundDb:CompDb]{CompoundDb::CompDb}.
+Based on CompoundDb::CompDb.
 }

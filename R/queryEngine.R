@@ -71,8 +71,7 @@
 #' Main interface to fetch data from the CENTREannotation package databases
 #' through the `CENTREannotDb` objects.
 #'
-#' @param x  A `CENTREannotDb` object, either `CENTREannotgeneDb` or
-#' `CENTREannotenhDb`
+#' @param x  A `CENTREannotDb` object.
 #' @param columns Columns to select (vector or string). Equivalent to X in
 #' SELECT X.
 #' @param entries Element ID to select (vector or sting). Equivalent to ID in
@@ -87,6 +86,8 @@
 #' @references Based on the internal query engine of `CompoundDb`
 #'
 #' @examples
+#' ah <- AnnotationHub::AnnotationHub()
+#' CENTREannotenhDb <- ah[["AH116731"]]
 #' res <- fetch_data(CENTREannotenhDb,
 #'     columns = c("enhancer_id", "start"),
 #'     entries = c("EH38E1519134", "EH38E1519132"),
@@ -94,8 +95,10 @@
 #' )
 #' @export
 fetch_data <- function(x, columns, entries, column_filter) {
-    con <- .dbconn(x)
-    if (length(.dbname(x))) {
+    
+    x <- CENTREannotDb(x@conn)
+    con <- .dbconn(x) #connect to database to retrieve records
+    if (length(.dbname(x)) && !is.null(con)) {
         on.exit(dbDisconnect(con))
     }
     data <- dbGetQuery(con, .build_query(x,

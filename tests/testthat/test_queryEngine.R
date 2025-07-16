@@ -3,6 +3,9 @@ test_that("fetch_data works as intented", {
         enhancer_id = c("EH38E1519132", "EH38E1519134"),
         start = c(9363676, 9364325)
     )
+    ah <- AnnotationHub::AnnotationHub()
+    CENTREannotenhDb <- ah[["AH116731"]]
+    
     fetched <- fetch_data(CENTREannotenhDb,
         columns = c("enhancer_id", "start"),
         entries = c("EH38E1519134", "EH38E1519132"),
@@ -10,7 +13,8 @@ test_that("fetch_data works as intented", {
     )
     expect_equal(fetched, expected, tolerance = 1e-6)
 
-
+    ah <- AnnotationHub::AnnotationHub()
+    CENTREannotgeneDb <- ah[["AH116730"]]
     fetched <- fetch_data(CENTREannotgeneDb,
         columns = c("gene_id1", "chr"),
         entries = c("ENSG00000000419"),

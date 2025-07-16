@@ -37,34 +37,24 @@ ah <- query(hub, "CENTREannotation")
 ah
 ```
 
-The GENCODE database can be accessed using `ah[["AH116730"]]` and returns a 
-CENTREannotgenedb object. It can also be accessed using 
-`CENTREannotgeneDb`
+The GENCODE database can be accessed using `ah[["AH116730"]]` that returns a 
+CENTREannotdb object. The SCREEN database can be accessed using `ah[["AH116731"]]`
+which also returns a CENTREannotdb object.
 
-## The CENTREannotationgeneDb and CENTREannotationenhDb object
+## How to use the CENTREannotDb objects.
 
 The objects  CENTREannotgeneDb and CENTREannotenhDb  represent the GENCODE
 and ENCODE databases respectively
 ```{r CENTREannotDb}
 library(CENTREannotation)
-CENTREannotgeneDb
-CENTREannotenhDb
+CENTREannotgeneDb <- ah[["AH116730"]]
+CENTREannotenhDb <- ah[["AH116731"]]
 ```
-
-CENTREannotgeneDb contains:
-
-- `gencode`: GENCODE v40 gene annotation table
-- `metadata`: metadata for the AnnotationHub
-
-CENTREannotenhDb contains:
-
-- `ccres`: ENCODE SCREEN v3 candidate cis regulatory elements
-- `metadata`: metadata for the AnnotationHub
 
 The database can be used as follows:
 
 - `tables()`: shows all the tables and columns in the database
-- `fetch_data()`: interface to select data from the database (see man pages) 
+- `fetch_data()`: function to select data from the database (see man pages) 
 
 ```{r use CENTREannotDb}
 tables(CENTREannotenhDb)
